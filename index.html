@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Custom Google Search</title>
+
+        <style type="text/css">
+            .artist-search-results
+            {
+                background: rgba(0, 0, 0, 0.8);
+                display: none;
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+            }
+
+            .artist-search-results.visible
+            {
+                display: block;
+            }
+
+            .artist-search-results .modal
+            {
+                background: #FFF;
+                top: 2em;
+                left: 10%;
+                position: absolute;
+                width: 80%;
+            }
+
+            .artist-search-results .modal-content
+            {
+                height: 10em;
+                overflow: auto;
+                margin: 1em;
+            }
+
+            .artist-search-results .modal-close-btn
+            {
+                background: none;
+                border: 0;
+                cursor: pointer;
+                float: right;
+                font-size: 1.2em;
+            }
+        </style>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+
+            $(function() {
+                $('.artist-search').on('submit', function(event) {
+                    event.preventDefault();
+                    handleSearchSubmit();
+                });
+
+                $('.modal-close-btn').on('click', function() {
+                    $('.artist-search-results').removeClass('visible');
+                });
+            });
+
+            function handleSearchSubmit()
+            {
+                var searchTerm = $('#artist-search-term').val();
+
+                $.ajax({
+                    url: "https://www.googleapis.com/customsearch/v1/siterestrict",
+                    dataType: "jsonp",
+                    data: {
+                        key: 'AIzaSyCei4ypSxdvj985b9Qr67Lq6oUDNDMa-Ss',
+                        cx: '006455971487473204572:zuueohon068',
+                        q: searchTerm
+                    },
+                    success: onSearchSuccess
+                });
+            }
+
+            function onSearchSuccess(response)
+            {
+                var $results = $('.artist-search-results .modal-content');
+
+                $results.empty();
+
+                response.items.forEach(function(item) {
+                    $results.append('<div class="search-result">' +
+                        '<a href="' + item.link + '">' + item.title + '</a>' +
+                        '<span class="snippet">' + item.snippet + '</span>' +
+                    '</div>');
+                });
+
+                $('.artist-search-results').addClass('visible');
+            }
+
+        </script>
+    </head>
+    <body>
+
+        <form class="artist-search">
+            <input id="artist-search-term" name="artist-search-term" aria-label="Search Term" type="text">
+            <button>Search</button>
+        </form>
+
+        <div class="artist-search-results">
+            <div class="modal">
+                <div class="modal-inner">
+                    <button aria-label="Close" class="modal-close-btn">X</button>
+                    <div class="modal-content">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
