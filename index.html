@@ -4,6 +4,24 @@
         <title>Custom Google Search</title>
 
         <style type="text/css">
+            .artist-search button
+            {
+                background: #272727;
+                border: 0;
+                color: #FFF;
+                cursor: pointer;
+                text-align: center;
+                margin-top: 1em;
+                padding: 0.5em;
+                transition: .1s opacity linear;
+            }
+
+            .artist-search input
+            {
+                border: 1px solid #CCC;
+                padding: 0.5em;
+            }
+
             .artist-search-results
             {
                 background: rgba(0, 0, 0, 0.8);
@@ -111,6 +129,15 @@
                 </div>
             </div>
         </div>
+
+        <!--
+            TODO:
+                - Style the search input
+                - Style the modal dialog
+                - Make the close button work
+                - Return the rest of the results
+                - Handle no results
+        -->
 
     </body>
 </html>
