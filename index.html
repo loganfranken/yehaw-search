@@ -4,21 +4,40 @@
         <title>Custom Google Search</title>
 
         <style type="text/css">
+            .artist-search
+            {
+                display: flex;
+            }
+
             .artist-search button
             {
                 background: #272727;
+                background-image: url('./magnifying_glass.svg');
+                background-position: center center;
+                background-size: 25%;
+                background-repeat: no-repeat;
                 border: 0;
                 color: #FFF;
                 cursor: pointer;
+                font-size: 1.1em;
                 text-align: center;
-                margin-top: 1em;
+                text-indent: -9999em;
+                margin-left: 0.5em;
                 padding: 0.5em;
                 transition: .1s opacity linear;
+                width: 5em;
+            }
+
+            .artist-search button:hover
+            {
+                opacity: 0.8;
             }
 
             .artist-search input
             {
                 border: 1px solid #CCC;
+                flex: 1 auto;
+                font-size: 1.1em;
                 padding: 0.5em;
             }
 
@@ -132,7 +151,6 @@
 
         <!--
             TODO:
-                - Style the search input
                 - Style the modal dialog
                 - Make the close button work
                 - Return the rest of the results
