@@ -1,27 +1,40 @@
 <!DOCTYPE html>
 <html>
+
+    <!--
+        TODO:
+            - Return the rest of the results
+            - Handle no results
+    -->
+
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Custom Google Search</title>
 
         <style type="text/css">
+            .btn
+            {
+                background-position: center center;
+                background-repeat: no-repeat;
+                border: 0;
+                cursor: pointer;
+                text-indent: -9999em;
+            }
+
             .artist-search
             {
                 display: flex;
             }
 
-            .artist-search button
+            .artist-search .btn
             {
-                background: #272727;
+                background-color: #272727;
                 background-image: url('./magnifying_glass.svg');
-                background-position: center center;
                 background-size: 25%;
-                background-repeat: no-repeat;
-                border: 0;
                 color: #FFF;
-                cursor: pointer;
                 font-size: 1.1em;
                 text-align: center;
-                text-indent: -9999em;
                 margin-left: 0.5em;
                 padding: 0.5em;
                 transition: .1s opacity linear;
@@ -43,43 +56,47 @@
 
             .artist-search-results
             {
-                background: rgba(0, 0, 0, 0.8);
-                display: none;
-                height: 100%;
+                background: rgba(0, 0, 0, 0.6);
+                height: 0;
                 left: 0;
+                opacity: 0;
+                overflow: hidden;
                 position: absolute;
+                transition: opacity 0.1s;
                 top: 0;
                 width: 100%;
             }
 
+            .artist-search-results .btn
+            {
+                background-color: #FFF;
+                background-image: url('./exit_icon.svg');
+                background-size: 80%;
+                float: right;
+                height: 2em;
+                width: 2em;
+            }
+
             .artist-search-results.visible
             {
-                display: block;
+                height: 100%;
+                opacity: 1;
             }
 
             .artist-search-results .modal
             {
                 background: #FFF;
-                top: 2em;
-                left: 10%;
-                position: absolute;
+                height: 40em;
+                margin: 2em auto;
+                max-width: 70em;
+                overflow: auto;
                 width: 80%;
             }
 
-            .artist-search-results .modal-content
+            .artist-search-results .modal-inner
             {
-                height: 10em;
-                overflow: auto;
                 margin: 1em;
-            }
-
-            .artist-search-results .modal-close-btn
-            {
-                background: none;
-                border: 0;
-                cursor: pointer;
-                float: right;
-                font-size: 1.2em;
+                overflow: auto;
             }
         </style>
 
@@ -93,13 +110,25 @@
                     handleSearchSubmit();
                 });
 
-                $('.modal-close-btn').on('click', function() {
-                    $('.artist-search-results').removeClass('visible');
+                var $artistSearchResults = $('.artist-search-results');
+
+                $('.artist-search-results .btn').on('click', function() {
+                    $artistSearchResults.removeClass('visible');
                 });
+
+                $('.artist-search-results').on('click', function(event) {
+                    if($(event.target).hasClass('artist-search-results'))
+                    {
+                        $artistSearchResults.removeClass('visible');
+                    }
+                })
             });
 
             function handleSearchSubmit()
             {
+                $('.artist-search-results').addClass('visible');
+
+                /*
                 var searchTerm = $('#artist-search-term').val();
 
                 $.ajax({
@@ -112,6 +141,7 @@
                     },
                     success: onSearchSuccess
                 });
+                */
             }
 
             function onSearchSuccess(response)
@@ -136,26 +166,18 @@
 
         <form class="artist-search">
             <input id="artist-search-term" name="artist-search-term" aria-label="Search Term" type="text">
-            <button>Search</button>
+            <button class="btn">Search</button>
         </form>
 
         <div class="artist-search-results">
             <div class="modal">
                 <div class="modal-inner">
-                    <button aria-label="Close" class="modal-close-btn">X</button>
+                    <button class="btn">Close</button>
                     <div class="modal-content">
                     </div>
                 </div>
             </div>
         </div>
-
-        <!--
-            TODO:
-                - Style the modal dialog
-                - Make the close button work
-                - Return the rest of the results
-                - Handle no results
-        -->
 
     </body>
 </html>
