@@ -1,0 +1,127 @@
+.yehaw-artist-search-btn
+{
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: 0;
+    cursor: pointer;
+    text-indent: -9999em;
+}
+
+.yehaw-artist-search-form
+{
+    display: flex;
+}
+
+.yehaw-artist-search-form-btn
+{
+    background-color: #272727;
+    background-image: url('../images/magnifying_glass.svg');
+    background-size: 25%;
+    color: #FFF;
+    font-size: 1.1em;
+    text-align: center;
+    margin-left: 0.5em;
+    padding: 0.5em;
+    transition: .1s opacity linear;
+    width: 5em;
+}
+
+.yehaw-artist-search-form.loading .yehaw-artist-search-form-btn
+{
+    opacity: 0.5;
+}
+
+.yehaw-artist-search-form-btn:hover
+{
+    opacity: 0.8;
+}
+
+.yehaw-artist-search-input
+{
+    border: 1px solid #CCC;
+    flex: 1 auto;
+    font-size: 1.1em;
+    padding: 0.5em;
+}
+
+.yehaw-artist-search-results
+{
+    background: rgba(0, 0, 0, 0.6);
+    height: 0;
+    font-family: Arial, sans-serif;
+    left: 0;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    transition: opacity 0.1s;
+    top: 0;
+    width: 100%;
+}
+
+.yehaw-artist-search-results.visible
+{
+    height: 100%;
+    opacity: 1;
+}
+
+.yehaw-artist-search-results-modal
+{
+    background: #FFF;
+    margin: 2em auto;
+    max-width: 70em;
+    overflow: auto;
+    width: 80%;
+}
+
+.yehaw-artist-search-results-modal-header
+{
+    border-bottom: 1px solid #DDD;
+    padding-bottom: 1.5em;
+    margin-bottom: 2em;
+    overflow: auto;
+}
+
+.yehaw-artist-search-results-modal-header h2
+{
+    float: left;
+    margin: 0;
+    width: 90%;
+}
+
+.yehaw-artist-search-results-close-btn
+{
+    background-color: #FFF;
+    background-image: url('../images/exit_icon.svg');
+    background-size: 80%;
+    float: right;
+    height: 2em;
+    width: 2em;
+}
+
+.yehaw-artist-search-results-modal-inner
+{
+    margin: 1.5em;
+}
+
+.yehaw-artist-search-results-modal-content
+{
+    height: 30em;
+    overflow: auto;
+}
+
+.yehaw-artist-search-result
+{
+    margin-bottom: 1.5em;
+}
+
+.yehaw-artist-search-result a
+{
+    color: #000;
+    font-family: 1.5em;
+    font-weight: bold;
+}
+
+.yehaw-artist-search-result-snippet
+{
+    display: block;
+}
