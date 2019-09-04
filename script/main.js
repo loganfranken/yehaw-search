@@ -132,6 +132,7 @@
         if(!$results.hasClass('visible'))
         {
             $artistSearchResults.addClass('visible');
+            $artistSearchResults.height($('body').height())
         }
     
         var nextPageStartIndex = currStartIndex + 10;

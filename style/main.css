@@ -48,7 +48,8 @@
 {
     background: rgba(0, 0, 0, 0.6);
     height: 0;
-    font-family: Arial, sans-serif;
+    font-family: proxima-nova, sans-serif;
+    font-weight: 400;
     left: 0;
     opacity: 0;
     overflow: hidden;
@@ -85,6 +86,8 @@
 .yehaw-artist-search-results-modal-header h2
 {
     float: left;
+    font-family: futura-pt, sans-serif;
+    font-weight: 700;
     margin: 0;
     width: 90%;
 }
@@ -118,7 +121,6 @@
 .yehaw-artist-search-result a
 {
     color: #000;
-    font-family: 1.5em;
     font-weight: bold;
 }
 
