@@ -15,17 +15,27 @@
             handleSearchSubmit();
         });
     
-        $('.yehaw-artist-search-results-close-btn').on('click', function() {
-            $artistSearchResults.removeClass('visible');
-        });
+        $('.yehaw-artist-search-results-close-btn').on('click', hideArtistSearchResults);
     
         $artistSearchResults.on('click', function(event) {
             if($(event.target).hasClass('yehaw-artist-search-results'))
             {
-                $artistSearchResults.removeClass('visible');
+                hideArtistSearchResults();
             }
         })
     });
+
+    function showArtistSearchResults()
+    {
+        $artistSearchResults.addClass('visible');
+        $artistSearchResults.height($('body').height())
+    }
+
+    function hideArtistSearchResults()
+    {
+        $artistSearchResults.removeClass('visible');
+        $artistSearchResults.height(0);
+    }
 
     function insertSearchForm()
     {
@@ -131,8 +141,7 @@
     
         if(!$results.hasClass('visible'))
         {
-            $artistSearchResults.addClass('visible');
-            $artistSearchResults.height($('body').height())
+            showArtistSearchResults();
         }
     
         var nextPageStartIndex = currStartIndex + 10;
